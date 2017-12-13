@@ -1,0 +1,39 @@
+<html><head><title>Respo</title><link href="http://logo.respo.site/respo.png" rel="icon" type="image/png"></link><link></link><meta charset="utf-8"></meta><meta content="width=device-width, initial-scale=1" name="viewport"></meta><meta content="#{:shell}" id="ssr-stages"></meta><div><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-41753901-17', 'auto');
+  ga('send', 'pageview');
+
+</script></div><link href="/main.cbd1d825.css" rel="stylesheet" type="text/css"></link><script id="config" type="text/edn">{:build? true}</script></head><body><div id="app"><div style="color:hsl(0,0%,20%);font-family:Hind,Verdana,'Hiragino Sans GB','WenQuanYi Micro Hei','Microsoft Yahei',sans-serif;font-size:14px;line-height:2;"><div style="align-items:center;border-bottom:1px solid hsl(0,0%,94%);display:flex;flex-direction:row;font-family:Josefin Sans;justify-content:space-between;line-height:40px;padding:0 32px;"><div><div style="display:inline-block;margin-right:64;"><a href="/" style="cursor:pointer;font-size:16;text-decoration:none;">Respo</a></div><div style="display:inline-block;margin-right:64;"><a href="/guide/why-respo.html" style="cursor:pointer;font-size:16;text-decoration:none;">Guide</a></div><div style="display:inline-block;margin-right:64;"><a href="/docs/overview.html" style="cursor:pointer;font-size:16;text-decoration:none;">API Docs</a></div><div style="display:inline-block;margin-right:64;"><a href="/discuss.html" style="cursor:pointer;font-size:16;text-decoration:none;">Discuss</a></div></div><div><a href="https://github.com/Respo" target="_blanck" style="text-decoration:none;">GitHub</a></div></div><div style="align-items:stretch;display:flex;flex-direction:row;"><div style="padding:16;padding-top:48;width:240;"><div><a href="/guide/why-respo.html" style="cursor:pointer;text-decoration:none;">Why Respo?</a></div><div><a href="/guide/pros-and-cons.html" style="cursor:pointer;text-decoration:none;">Pros and Cons</a></div><div><a href="/guide/environment.html" style="cursor:pointer;text-decoration:none;">Environment</a></div><div><a href="/guide/tutorial.html" style="cursor:pointer;text-decoration:none;">Tutorial</a></div><div><a href="/guide/dom-elements.html" style="color:hsl(0,0%,64%);cursor:pointer;text-decoration:none;">DOM Elements</a></div><div><a href="/guide/dom-properties.html" style="cursor:pointer;text-decoration:none;">DOM Properties</a></div><div><a href="/guide/dom-events.html" style="cursor:pointer;text-decoration:none;">DOM Events</a></div><div><a href="/guide/styles.html" style="cursor:pointer;text-decoration:none;">Styles</a></div><div><a href="/guide/virtual-dom.html" style="cursor:pointer;text-decoration:none;">Virtual DOM</a></div><div><a href="/guide/render-list.html" style="cursor:pointer;text-decoration:none;">List Rendering</a></div><div><a href="/guide/hot-swapping.html" style="cursor:pointer;text-decoration:none;">Hot Swapping</a></div><div><a href="/guide/base-components.html" style="cursor:pointer;text-decoration:none;">Base Components</a></div><div><a href="/guide/server-rendering.html" style="cursor:pointer;text-decoration:none;">Server Rendering</a></div><div><a href="/guide/trouble-shooting.html" style="cursor:pointer;text-decoration:none;">Trouble Shooting</a></div></div><div class="md-article" style="flex:1;padding:8;"><div class="md-paragraph"><h2><span>DOM elements</span></h2></div><div class="md-paragraph"><div><span>An element is defined like this with </span><a href="/docs/create-element.html" target="_blank">`create-element`</a><span>:</span></div></div><pre class="md-code-block"><code>(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> a [props &amp; children] (<span class="hljs-name">create-element</span> <span class="hljs-symbol">:a</span> props children))</code></pre><div class="md-paragraph"><div><span>And for example an element defined like this:</span></div></div><pre class="md-code-block"><code>(<span class="hljs-name">input</span>
+  {<span class="hljs-symbol">:attrs</span> {<span class="hljs-symbol">:placeholder</span> <span class="hljs-string">"Pick a name, and hit Enter"</span>}
+   <span class="hljs-symbol">:event</span> {<span class="hljs-symbol">:keydown</span> (<span class="hljs-name">on-keydown</span> mutate!)}
+   <span class="hljs-symbol">:style</span> {<span class="hljs-symbol">:line-height</span> <span class="hljs-number">2</span>
+           <span class="hljs-symbol">:width</span> <span class="hljs-string">"100%"</span>}})</code></pre><div class="md-paragraph"><div><span>might be rendered to an element with events bound:</span></div></div><pre class="md-code-block"><code><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Pick a name, and hit Enter"</span>
+       <span class="hljs-attr">style</span>=<span class="hljs-string">"line-height:2;width:100%;"</span>&gt;</span></code></pre><div class="md-paragraph"><div><span>Some of the frequently used elements are defined in </span><code>respo.alias</code><span>:</span></div></div><pre class="md-code-block"><code>a
+body
+br
+button
+canvas
+code
+footer
+h1
+h2
+hr
+head
+header
+html
+img
+input
+link
+meta'
+p
+pre
+script
+section
+span
+style
+textarea
+title</code></pre><div class="md-paragraph"><div><span>Some are not, but you can create them very quickly with </span><a href="/docs/create-element.html" target="_blank">`create-element`</a><span>.</span></div></div><div class="md-paragraph"><div><span>Since </span><code>meta</code><span> is a Clojure function, </span><code>meta'</code><span> is used here.</span></div></div></div></div></div></div><script src="/vendor.67acf57a.js"></script><script src="/main.cbd1d825.js"></script></body></html>

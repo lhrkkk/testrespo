@@ -1,1 +1,95 @@
-hello this is index
+<html><head><title>Respo</title><link href="http://logo.respo.site/respo.png" rel="icon" type="image/png"></link><link></link><meta charset="utf-8"></meta><meta content="width=device-width, initial-scale=1" name="viewport"></meta><meta content="#{:shell}" id="ssr-stages"></meta><div><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-41753901-17', 'auto');
+  ga('send', 'pageview');
+
+</script></div><link href="/main.cbd1d825.css" rel="stylesheet" type="text/css"></link><script id="config" type="text/edn">{:build? true}</script></head><body><div id="app"><div style="color:hsl(0,0%,20%);font-family:Hind,Verdana,'Hiragino Sans GB','WenQuanYi Micro Hei','Microsoft Yahei',sans-serif;font-size:14px;line-height:2;"><div style="align-items:center;border-bottom:1px solid hsl(0,0%,94%);display:flex;flex-direction:row;font-family:Josefin Sans;justify-content:space-between;line-height:40px;padding:0 32px;"><div><div style="display:inline-block;margin-right:64;"><a href="/" style="cursor:pointer;font-size:16;text-decoration:none;">Respo</a></div><div style="display:inline-block;margin-right:64;"><a href="/guide/why-respo.html" style="cursor:pointer;font-size:16;text-decoration:none;">Guide</a></div><div style="display:inline-block;margin-right:64;"><a href="/docs/overview.html" style="cursor:pointer;font-size:16;text-decoration:none;">API Docs</a></div><div style="display:inline-block;margin-right:64;"><a href="/discuss.html" style="cursor:pointer;font-size:16;text-decoration:none;">Discuss</a></div></div><div><a href="https://github.com/Respo" target="_blanck" style="text-decoration:none;">GitHub</a></div></div><div><div style="align-items:center;background-color:white;display:flex;flex-direction:column;justify-content:center;padding-bottom:0;padding-top:64;"><div style="background-image:url(http://logo.respo.site/respo.png);background-size:cover;display:inline-block;height:160;vertical-align:middle;width:160;"></div></div><div style="align-items:stretch;display:flex;flex-direction:row;justify-content:center;padding-bottom:48;padding-top:48;"><div style="color:hsl(0,0%,20%);font-family:Hind;font-size:16;font-weight:400;"><span>Respo: a virtual DOM library in ClojureScript.</span></div><div style="display:inline-block;height:1px;width:8;"></div><a href="https://github.com/Respo/respo-examples" target="_blank"><button style="background-color:hsl(200,100%,76%);border:none;color:hsl(0,0%,100%);cursor:pointer;display:inline-block;font-size:14;line-height:32px;min-width:80px;outline:none;padding:0 8px;text-align:center;vertical-align:top;">Read Examples</button></a><div style="display:inline-block;height:1px;width:8;"></div><a href="https://github.com/Respo/respo/wiki/Quick-Start" target="_blank"><button style="background-color:hsl(200,100%,76%);border:none;color:hsl(0,0%,100%);cursor:pointer;display:inline-block;font-size:14;line-height:32px;min-width:80px;outline:none;padding:0 8px;text-align:center;vertical-align:top;">Quick Start</button></a></div><div style="align-items:center;background-color:hsl(0,0%,96%);display:flex;flex-wrap:wrap;justify-content:center;padding:64;width:100%;"><div style="display:inline-block;margin:16;vertical-align:top;"><div style="font-family:Josefin Sans;font-size:16;line-height:1.4;text-align:center;">Component Nesting</div><pre class="code-snippet"><code>
+(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> comp-child
+  (<span class="hljs-name">create-comp</span> <span class="hljs-symbol">:child</span>
+    (<span class="hljs-name"><span class="hljs-builtin-name">fn</span></span> [prop-b]
+      (<span class="hljs-name"><span class="hljs-builtin-name">fn</span></span> [cursor]
+        (<span class="hljs-name">div</span> {} (<span class="hljs-name">comp-text</span> (<span class="hljs-name"><span class="hljs-builtin-name">str</span></span> prop-b) <span class="hljs-literal">nil</span>))))))
+
+(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> comp-demo
+  (<span class="hljs-name">create-comp</span> <span class="hljs-symbol">:demo</span>
+    (<span class="hljs-name"><span class="hljs-builtin-name">fn</span></span> [prop-a prop-b]
+      (<span class="hljs-name"><span class="hljs-builtin-name">fn</span></span> [cursor]
+        (<span class="hljs-name">div</span> {<span class="hljs-symbol">:style</span> {} <span class="hljs-symbol">:event</span> {} <span class="hljs-symbol">:attrs</span> {<span class="hljs-symbol">:class-name</span> <span class="hljs-string">"demo"</span>}}
+          (<span class="hljs-name">comp-text</span> (<span class="hljs-name"><span class="hljs-builtin-name">str</span></span> prop-a) <span class="hljs-literal">nil</span>)
+          (<span class="hljs-name">comp-child</span> prop-b))))))
+
+<span class="hljs-comment">; respo.alias/div</span>
+<span class="hljs-comment">; respo.alias/create-comp</span>
+<span class="hljs-comment">; respo.comp/comp-text</span>
+</code></pre></div><div style="display:inline-block;margin:16;vertical-align:top;"><div style="font-family:Josefin Sans;font-size:16;line-height:1.4;text-align:center;">Inline Styles</div><pre class="code-snippet"><code>
+(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> style-page
+  {<span class="hljs-symbol">:background-color</span> (<span class="hljs-name">hsl</span> <span class="hljs-number">240</span> <span class="hljs-number">80</span> <span class="hljs-number">80</span>)
+   <span class="hljs-symbol">:font-size</span> <span class="hljs-string">"14px"</span>})
+
+(<span class="hljs-name">div</span> {<span class="hljs-symbol">:style</span> (<span class="hljs-name"><span class="hljs-builtin-name">merge</span></span> ui/fullscreen ui/column style-page)})
+
+<span class="hljs-comment">; hsl.core :as hsl</span>
+<span class="hljs-comment">; respo-ui.style :as ui</span>
+</code></pre></div><div style="display:inline-block;margin:16;vertical-align:top;"><div style="font-family:Josefin Sans;font-size:16;line-height:1.4;text-align:center;">Event Handling</div><pre class="code-snippet"><code>
+(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> on-click [e dispatch!]
+  (<span class="hljs-name">dispatch!</span> <span class="hljs-symbol">:confirm</span> <span class="hljs-string">"from button"</span>)
+  (<span class="hljs-name">println</span> <span class="hljs-string">"clicked"</span>))
+
+(<span class="hljs-name">div</span> {<span class="hljs-symbol">:style</span> ui/button
+      <span class="hljs-symbol">:event</span> {<span class="hljs-symbol">:click</span> on-click}}})
+
+<span class="hljs-comment">; respo-ui.style :as ui</span>
+</code></pre></div><div style="display:inline-block;margin:16;vertical-align:top;"><div style="font-family:Josefin Sans;font-size:16;line-height:1.4;text-align:center;">Hot Swapping</div><pre class="code-snippet"><code>
+<span class="hljs-comment">; triggers by boot-cljs or figwheel</span>
+(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> on-jsload []
+  <span class="hljs-comment">; remove caches of component tree</span>
+  (<span class="hljs-name">clear-cache!</span>)
+  <span class="hljs-comment">; now rendering process use no caches</span>
+  (<span class="hljs-name">render-app!</span>)
+  (<span class="hljs-name">println</span> <span class="hljs-string">"code update."</span>))
+
+<span class="hljs-comment">; respo.core/clear-cache!</span>
+</code></pre></div><div style="display:inline-block;margin:16;vertical-align:top;"><div style="font-family:Josefin Sans;font-size:16;line-height:1.4;text-align:center;">Store Management</div><pre class="code-snippet"><code>
+(<span class="hljs-name"><span class="hljs-builtin-name">defonce</span></span> ref-store
+  (<span class="hljs-name"><span class="hljs-builtin-name">atom</span></span>
+    {<span class="hljs-symbol">:router</span> <span class="hljs-literal">nil</span>
+     <span class="hljs-symbol">:tasks</span> []
+     <span class="hljs-symbol">:states</span> {}}))
+
+(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> updater [store op op-data]
+  (<span class="hljs-name"><span class="hljs-builtin-name">case</span></span> op
+    <span class="hljs-symbol">:states</span> (<span class="hljs-name">update</span> store <span class="hljs-symbol">:states</span> (<span class="hljs-name">mutate</span> op-data))
+    <span class="hljs-symbol">:add-task</span> (<span class="hljs-name">add-task</span> store op-data)
+    store))
+
+(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> dispatch! [op op-data]
+  (<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> [new-store (<span class="hljs-name">updater</span> @ref-store op op-data)]
+    (<span class="hljs-name"><span class="hljs-builtin-name">reset!</span></span> ref-store new-store)))
+
+(<span class="hljs-name"><span class="hljs-builtin-name">add-watch</span></span> ref-store
+  (<span class="hljs-name"><span class="hljs-builtin-name">fn</span></span> [] (<span class="hljs-name">println</span> <span class="hljs-string">"store is changed!"</span>)))
+</code></pre></div><div style="display:inline-block;margin:16;vertical-align:top;"><div style="font-family:Josefin Sans;font-size:16;line-height:1.4;text-align:center;">State Management</div><pre class="code-snippet"><code>
+(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> on-input [state cursor]
+  (<span class="hljs-name"><span class="hljs-builtin-name">fn</span></span> [e dispatch!]
+    <span class="hljs-comment">; dispatch :states action with cursor and new state</span>
+    (<span class="hljs-name">dispatch!</span> <span class="hljs-symbol">:states</span> [cursor (<span class="hljs-symbol">:value</span> e)])))
+
+(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> comp-field
+  (<span class="hljs-name">create-comp</span> <span class="hljs-symbol">:field</span>
+    (<span class="hljs-name"><span class="hljs-builtin-name">fn</span></span> [states]
+      (<span class="hljs-name"><span class="hljs-builtin-name">fn</span></span> [cursor]
+        (<span class="hljs-name"><span class="hljs-builtin-name">let</span></span>
+          <span class="hljs-comment">; states are inside store as a states tree</span>
+          <span class="hljs-comment">; use `or` to specify default state</span>
+          [state (<span class="hljs-name"><span class="hljs-builtin-name">or</span></span> (<span class="hljs-symbol">:data</span> states) <span class="hljs-string">""</span>)]
+          (<span class="hljs-name">div</span> {}
+            (<span class="hljs-name">div</span> {}
+              (<span class="hljs-name">comp-text</span> <span class="hljs-string">"name"</span> <span class="hljs-literal">nil</span>))
+            (<span class="hljs-name">input</span> {<span class="hljs-symbol">:event</span> {<span class="hljs-symbol">:input</span> (<span class="hljs-name">on-input</span> states cursor)}
+                    <span class="hljs-symbol">:attrs</span> {<span class="hljs-symbol">:placeholder</span> <span class="hljs-string">"name"</span>
+                            <span class="hljs-symbol">:value</span> state}})))))))
+</code></pre></div></div><div style="min-height:200;padding:32;"><img src="https://img.shields.io/clojars/v/respo.svg"></img></div></div></div></div><script src="/vendor.67acf57a.js"></script><script src="/main.cbd1d825.js"></script></body></html>
